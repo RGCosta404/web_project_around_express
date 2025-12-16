@@ -1,10 +1,11 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+
 const router = express.Router();
 
 router.get('/users', (req, res) => {
-  fs.readFile(path.join(__dirname,'..' ,'data', 'moved_users.json'), (err, data) => {
+  fs.readFile(path.join(__dirname, '..', 'data', 'moved_users.json'), (err, data) => {
     if (err) {
       res.status(500).send('Erro ao ler o arquivo');
       return;
@@ -22,7 +23,7 @@ router.get('/users/:id', (req, res) => {
       return;
     }
     const users = JSON.parse(data);
-    const user = users.find(u => u._id === userId);
+    const user = users.find((u) => u._id === userId);
     if (user) {
       res.json(user);
     } else {
